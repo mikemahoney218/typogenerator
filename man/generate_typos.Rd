@@ -10,7 +10,7 @@ generate_typos(vec, methods, chars = NA)
 \item{vec}{A vector of strings to attempt to generate typos for.}
 
 \item{methods}{A vector of strings matching the methods (listed in
-\link{typo_generation}) to use for typo generation.}
+\link{typo_addition}) to use for typo generation.}
 
 \item{chars}{Characters to use in generating typos. If set to \code{NA}, will use
 the default character sets for each method; otherwise, \code{chars[[i]]} should be

@@ -6,7 +6,7 @@
 #'
 #' @param vec A vector of strings to attempt to generate typos for.
 #' @param methods A vector of strings matching the methods (listed in
-#' [typo_generation]) to use for typo generation.
+#' [typo_addition]) to use for typo generation.
 #' @param chars Characters to use in generating typos. If set to `NA`, will use
 #' the default character sets for each method; otherwise, `chars[[i]]` should be
 #' a character set usable by `methods[[i]]`.
