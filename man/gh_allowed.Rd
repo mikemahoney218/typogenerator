@@ -13,3 +13,7 @@ GitHub repository names.
 \description{
 Create a vector of characters allowed in GitHub repository names
 }
+\examples{
+gh_allowed()
+
+}

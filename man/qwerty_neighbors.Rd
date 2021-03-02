@@ -13,3 +13,7 @@ on the QWERTY keyboard and contains a character vector of neighboring keys.
 \description{
 Create a list of characters which neighbor one another on QWERTY keyboards
 }
+\examples{
+qwerty_neighbors()
+
+}

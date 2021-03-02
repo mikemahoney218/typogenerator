@@ -3,6 +3,9 @@
 #' @return A character vector of length 39 containing characters allowed in
 #' GitHub repository names.
 #'
+#' @examples
+#' gh_allowed()
+#'
 #' @export
 gh_allowed <- function() {
   vapply(c(45:46, 48:57, 95, 97:122),
@@ -14,6 +17,9 @@ gh_allowed <- function() {
 #'
 #' @return A list of length 37. Each element of the list is named with a key
 #' on the QWERTY keyboard and contains a character vector of neighboring keys.
+#'
+#' @examples
+#' qwerty_neighbors()
 #'
 #' @export
 qwerty_neighbors <- function() {
