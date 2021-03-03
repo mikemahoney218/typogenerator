@@ -130,7 +130,8 @@ equivalent to the union of all functions supplied to <code>methods</code>.</p>
     <tr>
       <th>methods</th>
       <td><p>A vector of strings matching the methods (listed in
-<a href='typo_addition.html'>typo_addition</a>) to use for typo generation.</p></td>
+<a href='typo_addition.html'>typo_addition</a>) to use for typo generation. Set to <code>"*"</code> or <code>"all"</code> to
+generate the maximum number of typos using default character sets.</p></td>
     </tr>
     <tr>
       <th>chars</th>
@@ -148,33 +149,32 @@ permutations from the typo-generating methods.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>generate_typos</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Michael"</span>, <span class='st'>"David"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"typo_addition"</span>, <span class='st'>"typo_prefix"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $Michael
-#&gt;  [1] "Michael-" "Michael." "Michael0" "Michael1" "Michael2" "Michael3"
-#&gt;  [7] "Michael4" "Michael5" "Michael6" "Michael7" "Michael8" "Michael9"
-#&gt; [13] "Michael_" "Michaela" "Michaelb" "Michaelc" "Michaeld" "Michaele"
-#&gt; [19] "Michaelf" "Michaelg" "Michaelh" "Michaeli" "Michaelj" "Michaelk"
-#&gt; [25] "Michaell" "Michaelm" "Michaeln" "Michaelo" "Michaelp" "Michaelq"
-#&gt; [31] "Michaelr" "Michaels" "Michaelt" "Michaelu" "Michaelv" "Michaelw"
-#&gt; [37] "Michaelx" "Michaely" "Michaelz" "-Michael" ".Michael" "0Michael"
-#&gt; [43] "1Michael" "2Michael" "3Michael" "4Michael" "5Michael" "6Michael"
-#&gt; [49] "7Michael" "8Michael" "9Michael" "_Michael" "aMichael" "bMichael"
-#&gt; [55] "cMichael" "dMichael" "eMichael" "fMichael" "gMichael" "hMichael"
-#&gt; [61] "iMichael" "jMichael" "kMichael" "lMichael" "mMichael" "nMichael"
-#&gt; [67] "oMichael" "pMichael" "qMichael" "rMichael" "sMichael" "tMichael"
-#&gt; [73] "uMichael" "vMichael" "wMichael" "xMichael" "yMichael" "zMichael"
+#&gt;  [1] "michael-" "michael." "michael0" "michael1" "michael2" "michael3"
+#&gt;  [7] "michael4" "michael5" "michael6" "michael7" "michael8" "michael9"
+#&gt; [13] "michael_" "michaela" "michaelb" "michaelc" "michaeld" "michaele"
+#&gt; [19] "michaelf" "michaelg" "michaelh" "michaeli" "michaelj" "michaelk"
+#&gt; [25] "michaell" "michaelm" "michaeln" "michaelo" "michaelp" "michaelq"
+#&gt; [31] "michaelr" "michaels" "michaelt" "michaelu" "michaelv" "michaelw"
+#&gt; [37] "michaelx" "michaely" "michaelz" "-michael" ".michael" "0michael"
+#&gt; [43] "1michael" "2michael" "3michael" "4michael" "5michael" "6michael"
+#&gt; [49] "7michael" "8michael" "9michael" "_michael" "amichael" "bmichael"
+#&gt; [55] "cmichael" "dmichael" "emichael" "fmichael" "gmichael" "hmichael"
+#&gt; [61] "imichael" "jmichael" "kmichael" "lmichael" "mmichael" "nmichael"
+#&gt; [67] "omichael" "pmichael" "qmichael" "rmichael" "smichael" "tmichael"
+#&gt; [73] "umichael" "vmichael" "wmichael" "xmichael" "ymichael" "zmichael"
 #&gt; 
 #&gt; $David
-#&gt;  [1] "David-" "David." "David0" "David1" "David2" "David3" "David4" "David5"
-#&gt;  [9] "David6" "David7" "David8" "David9" "David_" "Davida" "Davidb" "Davidc"
-#&gt; [17] "Davidd" "Davide" "Davidf" "Davidg" "Davidh" "Davidi" "Davidj" "Davidk"
-#&gt; [25] "Davidl" "Davidm" "Davidn" "Davido" "Davidp" "Davidq" "Davidr" "Davids"
-#&gt; [33] "Davidt" "Davidu" "Davidv" "Davidw" "Davidx" "Davidy" "Davidz" "-David"
-#&gt; [41] ".David" "0David" "1David" "2David" "3David" "4David" "5David" "6David"
-#&gt; [49] "7David" "8David" "9David" "_David" "aDavid" "bDavid" "cDavid" "dDavid"
-#&gt; [57] "eDavid" "fDavid" "gDavid" "hDavid" "iDavid" "jDavid" "kDavid" "lDavid"
-#&gt; [65] "mDavid" "nDavid" "oDavid" "pDavid" "qDavid" "rDavid" "sDavid" "tDavid"
-#&gt; [73] "uDavid" "vDavid" "wDavid" "xDavid" "yDavid" "zDavid"
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt;  [1] "david-" "david." "david0" "david1" "david2" "david3" "david4" "david5"
+#&gt;  [9] "david6" "david7" "david8" "david9" "david_" "davida" "davidb" "davidc"
+#&gt; [17] "davidd" "davide" "davidf" "davidg" "davidh" "davidi" "davidj" "davidk"
+#&gt; [25] "davidl" "davidm" "davidn" "davido" "davidp" "davidq" "davidr" "davids"
+#&gt; [33] "davidt" "davidu" "davidv" "davidw" "davidx" "davidy" "davidz" "-david"
+#&gt; [41] ".david" "0david" "1david" "2david" "3david" "4david" "5david" "6david"
+#&gt; [49] "7david" "8david" "9david" "_david" "adavid" "bdavid" "cdavid" "ddavid"
+#&gt; [57] "edavid" "fdavid" "gdavid" "hdavid" "idavid" "jdavid" "kdavid" "ldavid"
+#&gt; [65] "mdavid" "ndavid" "odavid" "pdavid" "qdavid" "rdavid" "sdavid" "tdavid"
+#&gt; [73] "udavid" "vdavid" "wdavid" "xdavid" "ydavid" "zdavid"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
