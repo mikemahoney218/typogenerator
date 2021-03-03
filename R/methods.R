@@ -54,7 +54,6 @@
 #' typo_bitsquat("Michael")
 #'
 #' typo_replace(c("Michael", "David"))
-#'
 #' @references
 #' Thibault Normand (2020). Typogenerator: a typosquatting generator in Golang.
 #' Golang package version 0.2.0. \url{https://github.com/zntrio/typogenerator}
@@ -65,7 +64,7 @@
 typo_addition <- function(vec, chars = gh_allowed()) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) paste0(x, chars)
     ),
     vec
@@ -77,7 +76,7 @@ typo_addition <- function(vec, chars = gh_allowed()) {
 typo_prefix <- function(vec, chars = gh_allowed()) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) paste0(chars, x)
     ),
     vec
@@ -89,27 +88,30 @@ typo_prefix <- function(vec, chars = gh_allowed()) {
 typo_bitsquat <- function(vec, chars = gh_allowed()) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) {
-        string <- tolower(strsplit(x, "")[[1]])
+        string <- strsplit(x, "")[[1]]
         strlen <- length(string)
         res <- vector("list", strlen)
         for (i in seq_len(strlen)) {
           res[[i]] <- vapply(
             chars,
-            function(y) paste0(
-              c(
-                string[0:(i - 1)],
-                y,
-                if (i == strlen) NULL else string[(i + 1):strlen]
+            function(y) {
+              paste0(
+                c(
+                  string[0:(i - 1)],
+                  y,
+                  if (i == strlen) NULL else string[(i + 1):strlen]
                 ),
-              collapse = ""),
+                collapse = ""
+              )
+            },
             character(1)
           )
-          }
-        unique(unlist(res))
         }
-      ),
+        unique(unlist(res))
+      }
+    ),
     vec
   )
 }
@@ -119,7 +121,7 @@ typo_bitsquat <- function(vec, chars = gh_allowed()) {
 typo_repetition <- function(vec, chars = NULL) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(string) {
         string <- strsplit(string, "")[[1]]
         strlen <- length(string)
@@ -131,7 +133,8 @@ typo_repetition <- function(vec, chars = NULL) {
               string[[i]],
               if (i == strlen) NULL else string[(i + 1):strlen]
             ),
-            collapse = "")
+            collapse = ""
+          )
         }
         unique(unlist(res))
       }
@@ -145,7 +148,7 @@ typo_repetition <- function(vec, chars = NULL) {
 typo_insertion <- function(vec, chars = gh_allowed()) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(string) {
         string <- strsplit(string, "")[[1]]
         strlen <- length(string)
@@ -153,16 +156,18 @@ typo_insertion <- function(vec, chars = gh_allowed()) {
         for (i in seq_len(strlen + 1)) {
           res[[i]] <- vapply(
             chars,
-            function(x) paste0(
-              c(
-                string[0:(i - 1)],
-                x,
-                if (i > strlen) NULL else string[(i):strlen]
-              ),
-              collapse = ""),
+            function(x) {
+              paste0(
+                c(
+                  string[0:(i - 1)],
+                  x,
+                  if (i > strlen) NULL else string[(i):strlen]
+                ),
+                collapse = ""
+              )
+            },
             character(1)
           )
-
         }
         unique(unlist(res))
       }
@@ -176,18 +181,19 @@ typo_insertion <- function(vec, chars = gh_allowed()) {
 typo_omission <- function(vec, chars = NULL) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) {
-        string <- tolower(strsplit(x, "")[[1]])
+        string <- strsplit(x, "")[[1]]
         strlen <- length(string)
         res <- vector("list", strlen)
         for (i in seq_len(strlen)) {
           res[[i]] <- paste0(
-              c(
-                string[0:(i - 1)],
-                if (i == strlen) NULL else string[(i + 1):strlen]
-              ),
-              collapse = "")
+            c(
+              string[0:(i - 1)],
+              if (i == strlen) NULL else string[(i + 1):strlen]
+            ),
+            collapse = ""
+          )
         }
         unique(unlist(res))
       }
@@ -201,22 +207,25 @@ typo_omission <- function(vec, chars = NULL) {
 typo_vowelswap <- function(vec, chars = c("a", "e", "i", "o", "u")) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) {
-        string <- tolower(strsplit(x, "")[[1]])
+        string <- strsplit(x, "")[[1]]
         strlen <- length(string)
         strvowels <- which(string %in% chars)
         res <- vector("list", length(strvowels))
         for (i in seq_len(length(strvowels))) {
           res[[i]] <- vapply(
             chars,
-            function(y) paste0(
-              c(
-                string[0:(strvowels[[i]] - 1)],
-                y,
-                if (strvowels[[i]] == strlen) NULL else string[(strvowels[[i]] + 1):strlen]
-              ),
-              collapse = ""),
+            function(y) {
+              paste0(
+                c(
+                  string[0:(strvowels[[i]] - 1)],
+                  y,
+                  if (strvowels[[i]] == strlen) NULL else string[(strvowels[[i]] + 1):strlen]
+                ),
+                collapse = ""
+              )
+            },
             character(1)
           )
         }
@@ -233,7 +242,7 @@ typo_vowelswap <- function(vec, chars = c("a", "e", "i", "o", "u")) {
 typo_transposition <- function(vec, chars = NULL) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(string) {
         string <- strsplit(string, "")[[1]]
         strlen <- length(string)
@@ -246,7 +255,8 @@ typo_transposition <- function(vec, chars = NULL) {
               string[[i]],
               if (i >= strlen - 1) NULL else string[(i + 2):strlen]
             ),
-            collapse = "")
+            collapse = ""
+          )
         }
         unique(unlist(res))
       }
@@ -260,21 +270,24 @@ typo_transposition <- function(vec, chars = NULL) {
 typo_replace <- function(vec, chars = qwerty_neighbors()) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) {
-        string <- tolower(strsplit(x, "")[[1]])
+        string <- strsplit(x, "")[[1]]
         strlen <- length(string)
         res <- vector("list", strlen)
         for (i in seq_len(strlen)) {
           res[[i]] <- vapply(
             chars[[which(names(chars) == tolower(string[[i]]))]],
-            function(y) paste0(
-              c(
-                string[0:(i - 1)],
-                y,
-                if (i == strlen) NULL else string[(i + 1):strlen]
-              ),
-              collapse = ""),
+            function(y) {
+              paste0(
+                c(
+                  string[0:(i - 1)],
+                  y,
+                  if (i == strlen) NULL else string[(i + 1):strlen]
+                ),
+                collapse = ""
+              )
+            },
             character(1)
           )
         }
@@ -290,33 +303,39 @@ typo_replace <- function(vec, chars = qwerty_neighbors()) {
 typo_doublehit <- function(vec, chars = qwerty_neighbors()) {
   stats::setNames(
     lapply(
-      vec,
+      tolower(vec),
       function(x) {
-        string <- tolower(strsplit(x, "")[[1]])
+        string <- strsplit(x, "")[[1]]
         strlen <- length(string)
         res <- vector("list", strlen)
         for (i in seq_len(strlen)) {
           res[[i]] <- c(
             vapply(
               chars[[which(names(chars) == tolower(string[[i]]))]],
-              function(y) paste0(
-                c(
-                  string[0:(i)],
-                  y,
-                  if (i == strlen) NULL else string[(i + 1):strlen]
-                ),
-                collapse = ""),
+              function(y) {
+                paste0(
+                  c(
+                    string[0:(i)],
+                    y,
+                    if (i == strlen) NULL else string[(i + 1):strlen]
+                  ),
+                  collapse = ""
+                )
+              },
               character(1)
             ),
             vapply(
               chars[[which(names(chars) == tolower(string[[i]]))]],
-              function(y) paste0(
-                c(
-                  string[0:(i - 1)],
-                  y,
-                  string[(i):strlen]
-                ),
-                collapse = ""),
+              function(y) {
+                paste0(
+                  c(
+                    string[0:(i - 1)],
+                    y,
+                    string[(i):strlen]
+                  ),
+                  collapse = ""
+                )
+              },
               character(1)
             )
           )

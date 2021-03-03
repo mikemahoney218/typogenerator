@@ -15,5 +15,4 @@ Create a list of characters which neighbor one another on QWERTY keyboards
 }
 \examples{
 qwerty_neighbors()
-
 }

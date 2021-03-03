@@ -6,7 +6,8 @@
 #'
 #' @param vec A vector of strings to attempt to generate typos for.
 #' @param methods A vector of strings matching the methods (listed in
-#' [typo_addition]) to use for typo generation.
+#' [typo_addition]) to use for typo generation. Set to `"*"` or `"all"` to
+#' generate the maximum number of typos using default character sets.
 #' @param chars Characters to use in generating typos. If set to `NA`, will use
 #' the default character sets for each method; otherwise, `chars[[i]]` should be
 #' a character set usable by `methods[[i]]`.
@@ -16,10 +17,21 @@
 #'
 #' @examples
 #' generate_typos(c("Michael", "David"), c("typo_addition", "typo_prefix"))
-#'
 #' @md
 #' @export
 generate_typos <- function(vec, methods, chars = NA) {
+  if (length(methods) == 1 && (methods == "*" | methods == "all")) {
+    methods <- c(
+      "typo_addition",
+      "typo_prefix",
+      "typo_bitsquat",
+      "typo_insertion",
+      "typo_omission",
+      "typo_transposition"
+    )
+    chars <- NA
+  }
+
   stats::setNames(
     lapply(
       vec,

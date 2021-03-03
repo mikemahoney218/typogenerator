@@ -100,7 +100,6 @@ once).
 typo_bitsquat("Michael")
 
 typo_replace(c("Michael", "David"))
-
 }
 \references{
 Thibault Normand (2020). Typogenerator: a typosquatting generator in Golang.
